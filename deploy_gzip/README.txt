@@ -1,0 +1,1 @@
+Payload de publicação validado por SHA-256 no build do Netlify.
