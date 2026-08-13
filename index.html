@@ -1,21 +1,66 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Faturamento Gestão</title></head>
-<body style="font-family:Arial,sans-serif;padding:24px">Carregando painel...</body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Faturamento Gestão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f3fa;--card:#fff;--soft:#f8f7fc;--line:#e6e1f0;--text:#191526;--muted:#756e86;--purple:#6d28d9;--blue:#2563eb;--green:#16a34a;--red:#dc2626;--yellow:#ca8a04;--nav:#130e22}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--text);font-size:13px}
+.shell{min-height:100vh;display:flex}.side{width:220px;background:linear-gradient(180deg,#100a1d,#18102b);color:white;padding:20px 13px;position:sticky;top:0;height:100vh}
+.brand{display:flex;gap:10px;align-items:center;padding:2px 8px 25px}.logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#7c3aed,#2563eb);display:grid;place-items:center;font-weight:800}.brand b{display:block}.brand small{color:#827996}
+.nav{display:grid;gap:3px}.nav button{border:0;background:transparent;color:#a9a0bb;text-align:left;padding:10px 12px;border-radius:8px;cursor:pointer;font:500 13px Inter}.nav button:hover,.nav button.on{background:#6d28d926;color:#d8c8ff}.foot{position:absolute;bottom:20px;left:20px;color:#6f6685;font-size:10px}
+main{flex:1;min-width:0;padding:25px 30px 55px}.wrap{max-width:1200px;margin:auto}.top{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;flex-wrap:wrap;margin-bottom:18px}.eyebrow{font-size:10px;font-weight:800;letter-spacing:.1em;color:var(--purple);text-transform:uppercase}.top h1{font-size:21px;margin:4px 0}.top p{margin:0;color:var(--muted)}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.badge,.btn{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:8px 11px;font-size:11px}.badge.ok{color:var(--green)}.btn{cursor:pointer;font-weight:700}.btn.primary{background:var(--purple);color:#fff;border-color:var(--purple)}
+.filters{display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);padding:11px 13px;border-radius:10px;margin-bottom:17px}.filters label{font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase}.filters input{border:1px solid var(--line);background:var(--soft);padding:6px 8px;border-radius:7px;font:500 12px 'IBM Plex Mono'}.presets{margin-left:auto;display:flex;gap:5px;flex-wrap:wrap}.presets button{border:1px solid var(--line);background:white;padding:6px 9px;border-radius:7px;cursor:pointer;font-size:11px}.presets button.on{background:var(--purple);color:white;border-color:var(--purple)}
+.grid{display:grid;gap:13px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:13px}.card{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:17px;box-shadow:0 4px 20px #241a4010}.label{font-size:10px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.04em}.value{font:600 25px 'IBM Plex Mono';margin:9px 0 3px}.sub{font-size:11px;color:var(--muted)}.two{grid-template-columns:1.4fr 1fr;margin-bottom:13px}.card h2{font-size:14px;margin:0 0 4px}.desc{font-size:11px;color:var(--muted);margin-bottom:15px}.catrows,.filiais{display:grid;gap:10px}.row{display:grid;grid-template-columns:120px 1fr auto;gap:10px;align-items:center}.bar{height:9px;background:var(--soft);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;border-radius:9px;background:var(--purple)}.mono{font-family:'IBM Plex Mono';font-weight:600}.panel{display:none}.panel.on{display:block}
+table{width:100%;border-collapse:collapse}th{text-align:left;font-size:10px;color:var(--muted);text-transform:uppercase;padding:8px;border-bottom:1px solid var(--line)}td{padding:9px 8px;border-bottom:1px solid #eeeaf4;font-size:12px}td.n{text-align:right;font-family:'IBM Plex Mono'}tbody tr:hover{background:var(--soft)}.scroll{overflow:auto}.empty{text-align:center;padding:35px;color:var(--muted)}.status{min-height:18px;color:var(--muted);font-size:11px;margin:-7px 0 12px}.status.err{color:var(--red)}
+@media(max-width:900px){.shell{display:block}.side{width:100%;height:auto;position:relative}.foot{display:none}.nav{display:flex;overflow:auto}.brand{padding-bottom:12px}main{padding:18px 12px}.kpis,.two{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.kpis,.two{grid-template-columns:1fr}.presets{margin-left:0;width:100%}.actions{width:100%}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side"><div class="brand"><div class="logo">FG</div><div><b>Faturamento Gestão</b><small>Filiais 101 · 102</small></div></div>
+<div class="nav"><button class="on" data-tab="overview">Visão Geral</button><button data-tab="people">Desempenho Mensal</button><button data-tab="daily">Desempenho Diário</button></div>
+<div class="foot">Base oficial · Supabase</div></aside>
+<main><div class="wrap">
+<div class="top"><div><div class="eyebrow">Painel executivo</div><h1 id="title">Visão geral</h1><p>Indicadores de faturamento atualizados pelo Supabase.</p></div><div class="actions"><button class="btn primary" id="refresh">Atualizar</button><span class="badge" id="last">Carregando...</span></div></div>
+<div class="filters"><label>Período</label><input type="date" id="start"><span>até</span><input type="date" id="end"><div class="presets"><button data-p="m" class="on">Este mês</button><button data-p="3">3 meses</button><button data-p="y">Este ano</button><button data-p="all">Histórico</button></div></div>
+<div id="status" class="status"></div>
+<section id="overview" class="panel on">
+<div class="grid kpis"><div class="card"><div class="label">Total de pedidos</div><div class="value" id="total">0</div><div class="sub">no período</div></div><div class="card"><div class="label">Em atraso</div><div class="value" id="late">0%</div><div class="sub">dos pedidos válidos</div></div><div class="card"><div class="label">Filial 0101</div><div class="value" id="f101">0</div><div class="sub">pedidos</div></div><div class="card"><div class="label">Filial 0102</div><div class="value" id="f102">0</div><div class="sub">pedidos</div></div></div>
+<div class="grid two"><div class="card"><h2>Tempo médio por categoria</h2><div class="desc">Duração média dos pedidos faturados.</div><div class="catrows" id="cats"></div></div><div class="card"><h2>Participação por filial</h2><div class="desc">Distribuição do volume no período.</div><div class="filiais" id="filiais"></div></div></div>
+<div class="card"><h2>Evolução diária</h2><div class="desc">Pedidos por dia no período selecionado.</div><div class="scroll"><table><thead><tr><th>Data</th><th style="text-align:right">Picking</th><th style="text-align:right">Pequeno</th><th style="text-align:right">Médio</th><th style="text-align:right">Grande</th><th style="text-align:right">Total</th></tr></thead><tbody id="evo"></tbody></table></div></div>
+</section>
+<section id="people" class="panel"><div class="card"><h2>Desempenho por colaborador</h2><div class="desc">Pedidos, itens processados e tempo médio no período.</div><div class="scroll"><table><thead><tr><th>Pessoa</th><th style="text-align:right">Pedidos</th><th style="text-align:right">Itens</th><th style="text-align:right">Tempo médio</th><th style="text-align:right">No prazo</th></tr></thead><tbody id="peopleBody"></tbody></table></div></div></section>
+<section id="daily" class="panel"><div class="card"><h2>Desempenho diário</h2><div class="desc">Volume total faturado por dia.</div><div class="scroll"><table><thead><tr><th>Data</th><th style="text-align:right">Pedidos</th><th style="text-align:right">Filial 0101</th><th style="text-align:right">Filial 0102</th></tr></thead><tbody id="dailyBody"></tbody></table></div></div></section>
+</div></main></div>
 <script>
-(async()=>{
-  try{
-    let html='';
-    for(let i=1;i<=10;i++){
-      const n=String(i).padStart(2,'0');
-      const r=await fetch(`app/part${n}.txt?v=1`,{cache:'no-store'});
-      if(!r.ok) throw new Error(`Falha ao carregar parte ${n}`);
-      html+=await r.text();
-    }
-    document.open(); document.write(html); document.close();
-  }catch(e){
-    document.body.innerHTML='<h2>Não foi possível carregar o painel</h2><p>'+String(e.message||e)+'</p>';
-  }
-})();
+const URL='https://eytsqgnuaulkoxtexlhl.supabase.co';
+const KEY='sb_publishable_bEkVl-Mk-Ej6jAQrjYAHOw_bpCUromD';
+const CAT=['Picking','Pequeno','Médio','Grande'];
+let D=null, preset='m';
+const $=id=>document.getElementById(id), fmt=n=>new Intl.NumberFormat('pt-BR').format(Math.round(Number(n)||0)), br=d=>d?d.split('-').reverse().join('/'):'—';
+async function rpc(name){const r=await fetch(URL+'/rest/v1/rpc/'+name,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'},body:'{}'});if(!r.ok)throw new Error('Supabase '+r.status);return r.json()}
+function within(d){return d>=$('start').value&&d<=$('end').value}
+function setPreset(p){preset=p;if(!D)return;let max=D.date_max,min=D.date_min,s=max;if(p==='m')s=max.slice(0,7)+'-01';if(p==='3'){let x=new Date(max+'T00:00:00');x.setMonth(x.getMonth()-3);s=x.toISOString().slice(0,10)}if(p==='y')s=max.slice(0,4)+'-01-01';if(p==='all')s=min;if(s<min)s=min;$('start').value=s;$('end').value=max;document.querySelectorAll('[data-p]').forEach(b=>b.classList.toggle('on',b.dataset.p===p));render()}
+function render(){
+ if(!D)return;const cats=[0,1,2,3].map(()=>({q:0,h:0,late:0})), days={}, fil={0:0,1:0};
+ (D.daily_cat||[]).forEach(r=>{if(!within(r[0]))return;let c=+r[1];if(!cats[c])return;cats[c].q+=+r[2]||0;cats[c].h+=+r[3]||0;cats[c].late+=+r[4]||0;days[r[0]]??=[0,0,0,0];days[r[0]][c]+=+r[2]||0});
+ (D.daily_filial||[]).forEach(r=>{if(within(r[0]))fil[+r[1]]=(fil[+r[1]]||0)+(+r[2]||0)});
+ let total=fil[0]+fil[1],valid=cats.reduce((a,c)=>a+c.q,0),late=cats.reduce((a,c)=>a+c.late,0);
+ $('total').textContent=fmt(total);$('late').textContent=valid?((late/valid)*100).toFixed(1).replace('.',',')+'%':'0%';$('f101').textContent=fmt(fil[0]);$('f102').textContent=fmt(fil[1]);
+ $('cats').innerHTML=cats.map((c,i)=>`<div class="row"><b>${CAT[i]}</b><div class="bar"><i style="width:${Math.min(100,c.q?c.h/c.q*18:0)}%"></i></div><span class="mono">${c.q?(c.h/c.q).toFixed(2).replace('.',',')+'h':'—'}</span></div>`).join('');
+ $('filiais').innerHTML=[['0101',fil[0]],['0102',fil[1]]].map(x=>`<div><div style="display:flex;justify-content:space-between"><b>${x[0]}</b><span class="mono">${fmt(x[1])}</span></div><div class="bar" style="margin-top:6px"><i style="width:${total?x[1]/total*100:0}%;background:${x[0]==='0101'?'var(--purple)':'var(--blue)'}"></i></div></div>`).join('');
+ $('evo').innerHTML=Object.keys(days).sort().reverse().map(d=>`<tr><td>${br(d)}</td>${days[d].map(n=>`<td class="n">${fmt(n)}</td>`).join('')}<td class="n"><b>${fmt(days[d].reduce((a,b)=>a+b,0))}</b></td></tr>`).join('')||'<tr><td colspan="6" class="empty">Sem dados.</td></tr>';
+ const people={};(D.daily_person||[]).forEach(r=>{if(!within(r[0]))return;let p=r[1];people[p]??={q:0,h:0,it:0,ok:0,late:0};people[p].q+=+r[3]||0;people[p].h+=+r[4]||0;people[p].it+=+r[5]||0;people[p].ok+=+r[6]||0;people[p].late+=+r[7]||0});
+ $('peopleBody').innerHTML=Object.entries(people).sort((a,b)=>b[1].q-a[1].q).map(([p,v])=>`<tr><td>${(D.pessoas||[])[+p]||'Pessoa '+p}</td><td class="n">${fmt(v.q)}</td><td class="n">${fmt(v.it)}</td><td class="n">${v.q?(v.h/v.q).toFixed(2).replace('.',',')+'h':'—'}</td><td class="n">${v.ok+v.late?((v.ok/(v.ok+v.late))*100).toFixed(1).replace('.',',')+'%':'—'}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Sem dados.</td></tr>';
+ const fd={};(D.daily_filial||[]).forEach(r=>{if(!within(r[0]))return;fd[r[0]]??=[0,0];fd[r[0]][+r[1]]+=+r[2]||0});$('dailyBody').innerHTML=Object.keys(fd).sort().reverse().map(d=>`<tr><td>${br(d)}</td><td class="n"><b>${fmt(fd[d][0]+fd[d][1])}</b></td><td class="n">${fmt(fd[d][0])}</td><td class="n">${fmt(fd[d][1])}</td></tr>`).join('')||'<tr><td colspan="4" class="empty">Sem dados.</td></tr>';
+}
+async function load(){try{$('status').className='status';$('status').textContent='Atualizando dados...';let [d,st]=await Promise.all([rpc('dashboard_faturamento'),rpc('dashboard_status_faturamento').catch(()=>null)]);if(!d.date_min||!d.date_max)throw new Error('Base ainda sem datas');D=d;$('start').min=d.date_min;$('start').max=d.date_max;$('end').min=d.date_min;$('end').max=d.date_max;setPreset(preset);$('last').className='badge ok';$('last').textContent='Último faturamento: '+br(d.date_max);$('status').textContent=st&&st.ultima_sincronizacao?'Supabase atualizado · '+new Date(st.ultima_sincronizacao).toLocaleString('pt-BR'):'Dados atualizados pelo Supabase'}catch(e){$('status').className='status err';$('status').textContent='Não foi possível carregar: '+e.message}}
+$('refresh').onclick=load;$('start').onchange=render;$('end').onchange=render;document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>setPreset(b.dataset.p));document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.remove('on'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('on'));b.classList.add('on');$(b.dataset.tab).classList.add('on');$('title').textContent=b.textContent});load();setInterval(load,300000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)load()});
 </script>
-</html>
+</body></html>
