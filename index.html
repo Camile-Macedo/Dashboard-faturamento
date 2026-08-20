@@ -213,8 +213,8 @@
     border-radius:20px;background:var(--grande);color:#fff;font-size:10px;font-weight:700;line-height:1;
   }
   .obs-btn.open .obs-badge{background:rgba(255,255,255,.3);}
-  #diarioObsPanel{margin-top:-8px;margin-bottom:14px;}
-  #diarioObsPanel:empty{display:none;}
+  #metasObsPanel{margin-top:14px;margin-bottom:14px;}
+  #metasObsPanel:empty{display:none;}
   .obs-panel{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:16px 18px;box-shadow:var(--shadow-sm);}
   .obs-panel .op-title{font-size:12.5px;font-weight:600;margin-bottom:2px;display:flex;align-items:center;gap:7px;}
   .obs-panel .op-desc{font-size:11.5px;color:var(--text-secondary);margin-bottom:12px;}
@@ -485,8 +485,44 @@
   .obs-input.needs-obs::placeholder{color:#E19B9B;}
   tr.day-row-bad td:first-child{box-shadow:inset 3px 0 0 var(--grande);}
   tr.day-row-ok td:first-child{box-shadow:inset 3px 0 0 var(--success);}
+
+  /* Planejamento de metas de Setembro — meta igual para todos */
+  .setembro-plan{margin:14px 0 18px;padding:16px 18px;border:1px solid var(--border);border-radius:11px;background:var(--surface);box-shadow:var(--shadow-sm);}
+  .setembro-plan-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px;}
+  .setembro-plan-title{font-size:14px;font-weight:700;color:var(--text-primary);}
+  .setembro-plan-sub{font-size:11.5px;color:var(--text-secondary);margin-top:2px;}
+  .setembro-plan-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:13px;}
+  .setembro-plan-kpi{padding:11px 12px;border:1px solid var(--border-soft);border-radius:9px;background:var(--surface-soft);}
+  .setembro-plan-kpi .l{font-size:9.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);font-weight:700;}
+  .setembro-plan-kpi .v{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:700;color:var(--text-primary);margin-top:4px;}
+  .setembro-plan-kpi .s{font-size:10.5px;color:var(--text-muted);margin-top:2px;}
+  .setembro-equal-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:11px 12px;border:1px solid rgba(109,40,217,.28);border-radius:9px;background:var(--accent-soft);}
+  .setembro-equal-box label{font-size:11px;font-weight:700;color:var(--text-primary);}
+  .setembro-equal-box input{width:88px;border:1px solid var(--border);border-radius:6px;padding:6px 9px;font-family:'IBM Plex Mono',monospace;background:var(--surface);color:var(--text-primary);}
+  .setembro-equal-note{font-size:10.5px;color:var(--text-secondary);}
+  @media(max-width:850px){.setembro-plan-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+  @media(max-width:520px){.setembro-plan-grid{grid-template-columns:1fr;}}
+
   .meta-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:17px 19px;box-shadow:var(--shadow-sm);}
   .meta-card h3{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:600;margin:0 0 4px;display:flex;align-items:center;gap:6px;}
+  .meta-suggestion{
+    margin:13px 0 14px;padding:11px 12px;border:1px solid rgba(109,40,217,.24);
+    border-radius:9px;background:var(--accent-soft);
+  }
+  .meta-suggestion-title{font-size:10.5px;font-weight:700;color:var(--text-primary);margin-bottom:7px;}
+  .meta-suggestion-months{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:9px;}
+  .meta-suggestion-month{padding:7px 8px;border:1px solid var(--border-soft);border-radius:7px;background:var(--surface);}
+  .meta-suggestion-month .m{font-size:9.5px;color:var(--text-muted);font-weight:700;text-transform:uppercase;}
+  .meta-suggestion-month .q{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--text-primary);margin-top:2px;}
+  .meta-suggestion-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .meta-suggestion-summary{font-size:10.5px;color:var(--text-secondary);line-height:1.5;}
+  .meta-suggestion-summary b{color:var(--text-primary);}
+  .meta-suggestion-btn{
+    border:1px solid var(--accent);background:var(--accent);color:#fff;border-radius:6px;
+    padding:6px 9px;font:600 10.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;
+  }
+  .meta-suggestion-btn:hover{background:var(--accent-dark);border-color:var(--accent-dark);}
+  @media(max-width:620px){.meta-suggestion-months{grid-template-columns:1fr;}}
   .meta-card .meta-desc{font-size:11px;color:var(--text-secondary);margin:0 0 14px;line-height:1.4;}
   .swatch-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;}
   .meta-catbreak{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);}
@@ -1083,6 +1119,31 @@
             </div>
           </div>
 
+          <div class="category-base-card" aria-label="Faixas de classificação dos pedidos">
+            <div class="category-base-title">
+              <b>Classificação por quantidade de itens</b>
+              <span>Critério usado no ranking</span>
+            </div>
+            <div class="category-base-grid">
+              <div class="category-base-item" style="--cat-color:#8792A0">
+                <div class="category-base-name">Picking</div>
+                <div class="category-base-range">1 a 10 itens</div>
+              </div>
+              <div class="category-base-item" style="--cat-color:#2F6FED">
+                <div class="category-base-name">Pedido pequeno</div>
+                <div class="category-base-range">11 a 200 itens</div>
+              </div>
+              <div class="category-base-item" style="--cat-color:#D99A2B">
+                <div class="category-base-name">Pedido Médio</div>
+                <div class="category-base-range">201 a 600 itens</div>
+              </div>
+              <div class="category-base-item" style="--cat-color:#D14B4B">
+                <div class="category-base-name">Pedido Grande</div>
+                <div class="category-base-range">601+ itens</div>
+              </div>
+            </div>
+          </div>
+
           <div id="rankingPodium" class="ranking-essential-highlights"></div>
 
           <div id="rankingDetailPanel" class="ranking-detail-panel" hidden></div>
@@ -1160,17 +1221,19 @@
 
       <!-- PANEL: METAS (geral + por pessoa, com link p/ meta usada no Desempenho Diário) -->
       <div class="panel" id="panel-metas">
-        <p class="section-sub">Compare suas metas com o realizado. As metas são sincronizadas online e ficam disponíveis em outros computadores.</p>
+        <p class="section-sub">Compare suas metas com o realizado. A meta de pedidos mostra uma sugestão automática baseada na média dos últimos 3 meses completos. As metas são sincronizadas online e ficam disponíveis em outros computadores.</p>
         <div class="metas-grid" id="metasGrid"></div>
 
         <h3 style="font-family:'Inter',sans-serif;font-size:16px;margin:28px 0 4px;">Metas por pessoa (pedidos diários)</h3>
-        <p class="section-sub">Defina a meta de pedidos por dia de cada pessoa — a mesma meta usada na aba Desempenho Diário. O realizado é a média diária de pedidos no período selecionado.</p>
+        <p class="section-sub">A meta de pedidos por dia é igual para todos os colaboradores e é a mesma usada na aba Desempenho Diário. O realizado é a média diária de pedidos no período selecionado. As observações dos dias abaixo da meta também ficam registradas aqui.</p>
+        <div id="setembroMetaPlan"></div>
         <div class="metas-grid" id="metasPessoasGrid"></div>
+        <div id="metasObsPanel"></div>
       </div>
 
       <!-- PANEL: ACOMPANHAMENTO DIÁRIO -->
       <div class="panel" id="panel-diario">
-        <p class="section-sub">Comparação diária dos colaboradores fixos: pedidos faturados, meta batida ou não, e observação quando não bateu. Metas e observações são sincronizadas online entre computadores.</p>
+        <p class="section-sub">Comparação diária dos colaboradores fixos: pedidos faturados e meta batida ou não. As justificativas dos dias abaixo da meta ficam na aba <b>Metas de Faturamento</b>.</p>
 
         <div class="card" style="margin-bottom:16px;">
           <h2>Meta diária por colaborador</h2>
@@ -1179,7 +1242,6 @@
         </div>
 
         <div class="kpi-row" id="diarioSummaryRow" style="grid-template-columns:repeat(4,1fr);"></div>
-        <div id="diarioObsPanel"></div>
 
         <div class="card" style="margin-bottom:16px;">
           <div class="diario-compare-header">
@@ -2560,7 +2622,17 @@ async function loadCloudState({silent=false}={}){
     if (result.hasData){
       replaceObject(GOALS, result.state.goals);
       replaceObject(DAILY_GOALS_ALL, result.state.dailyGoals);
-      replaceObject(OBSERVACOES, result.state.observations);
+
+      // Observações: nunca apagar uma justificativa digitada neste PC
+      // só porque a nuvem ainda não terminou de gravá-la.
+      // Primeiro carrega o que já está salvo online e depois reaplica
+      // somente as observações locais que ainda estão pendentes de envio.
+      const remoteObservations = (result.state && result.state.observations && typeof result.state.observations === 'object')
+        ? result.state.observations
+        : {};
+      replaceObject(OBSERVACOES, remoteObservations);
+      Object.assign(OBSERVACOES, OBSERVACOES_PENDENTES);
+
       lsSet('painel_goals_v1', GOALS);
       lsSet('painel_daily_goals_all_v1', DAILY_GOALS_ALL);
       lsSet('painel_observacoes_v1', OBSERVACOES);
@@ -2579,6 +2651,9 @@ async function loadCloudState({silent=false}={}){
       }
     }
     setCloudBadge('ok', '☁ Dados compartilhados');
+    // Se alguma observação ficou pendente (queda de internet, fechamento da aba,
+    // troca de página etc.), tenta enviá-la novamente automaticamente.
+    syncPendingObservations();
     if (cached) renderActivePanel();
   }catch(err){
     console.error('Falha ao carregar dados compartilhados:', err);
@@ -2590,6 +2665,15 @@ async function loadCloudState({silent=false}={}){
 
 function saveSharedValue(section, key, value, localStorageKey, localObject, debounceMs=0){
   if (localStorageKey && localObject) lsSet(localStorageKey, localObject);
+
+  // A observação é gravada localmente na mesma hora e marcada como pendente
+  // até a confirmação do armazenamento online. Assim ela não some ao atualizar
+  // a página ou ao abrir o painel novamente antes do fim da sincronização.
+  if (section === 'observations'){
+    OBSERVACOES_PENDENTES[key] = value;
+    lsSet('painel_observacoes_pendentes_v1', OBSERVACOES_PENDENTES);
+  }
+
   if (!cloudConfigured()){
     setCloudBadge('', '☁ Configuração pendente');
     return;
@@ -2600,16 +2684,46 @@ function saveSharedValue(section, key, value, localStorageKey, localObject, debo
     setCloudBadge('saving', '☁ Salvando...');
     try{
       await cloudJsonp({action:'set', section, key, value:JSON.stringify(value)}, 30000);
+
+      if (section === 'observations' && OBSERVACOES_PENDENTES[key] === value){
+        delete OBSERVACOES_PENDENTES[key];
+        lsSet('painel_observacoes_pendentes_v1', OBSERVACOES_PENDENTES);
+      }
+
       setCloudBadge('ok', '☁ Dados compartilhados');
     }catch(err){
       console.error('Falha ao salvar dado compartilhado:', err);
-      setCloudBadge('error', '⚠ Salvo só neste PC');
+      setCloudBadge('error', '⚠ Observação preservada neste PC');
     }finally{
       cloudSaveTimers.delete(timerKey);
     }
   };
   if (debounceMs > 0) cloudSaveTimers.set(timerKey, setTimeout(run, debounceMs));
   else run();
+}
+
+let pendingObservationSyncRunning = false;
+async function syncPendingObservations(){
+  if (!cloudConfigured() || pendingObservationSyncRunning) return;
+  const pendentes = Object.entries(OBSERVACOES_PENDENTES);
+  if (!pendentes.length) return;
+
+  pendingObservationSyncRunning = true;
+  try{
+    for (const [key, value] of pendentes){
+      try{
+        await cloudJsonp({action:'set', section:'observations', key, value:JSON.stringify(value)}, 30000);
+        if (OBSERVACOES_PENDENTES[key] === value){
+          delete OBSERVACOES_PENDENTES[key];
+          lsSet('painel_observacoes_pendentes_v1', OBSERVACOES_PENDENTES);
+        }
+      }catch(err){
+        console.error('Falha ao reenviar observação pendente:', key, err);
+      }
+    }
+  }finally{
+    pendingObservationSyncRunning = false;
+  }
 }
 
 // ---------- Meta x Realizado ----------
@@ -2643,6 +2757,145 @@ function gapLabel(realizado, goal, invert, fmtFn){
   return `Abaixo da meta — faltam ${fmtFn(Math.abs(diff))}`;
 }
 
+function nomeMesCurto(ym){
+  const [y,m] = String(ym).split('-');
+  const meses = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  return `${meses[(parseInt(m,10)||1)-1]}/${String(y).slice(-2)}`;
+}
+
+function feriadosNacionaisFixosISO(ano){
+  // Feriados nacionais fixos usados no cálculo operacional de dias úteis.
+  // Feriados locais/estaduais e pontos facultativos não entram automaticamente.
+  const mmdd = ['01-01','04-21','05-01','09-07','10-12','11-02','11-15','11-20','12-25'];
+  return new Set(mmdd.map(x => `${ano}-${x}`));
+}
+
+function diasUteisDoMesMeta(ano, mes1a12){
+  const feriados = feriadosNacionaisFixosISO(ano);
+  let total = 0;
+  const ultimoDia = new Date(ano, mes1a12, 0).getDate();
+  for (let dia=1; dia<=ultimoDia; dia++){
+    const d = new Date(ano, mes1a12-1, dia);
+    const dow = d.getDay();
+    if (dow < 1 || dow > 5) continue;
+    const iso = `${ano}-${String(mes1a12).padStart(2,'0')}-${String(dia).padStart(2,'0')}`;
+    if (feriados.has(iso)) continue;
+    total++;
+  }
+  return total;
+}
+
+function nomeMesAno(ano, mes1a12){
+  const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  return `${meses[mes1a12-1]}/${ano}`;
+}
+
+function sugestaoMetaPedidosUltimos3Meses(){
+  const maxDate = FILTER_DATA.date_max || '';
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(maxDate)){
+    return {
+      meses:[], media:0, sugestao:0,
+      metaDiaria:0, metaDiariaExata:0,
+      diasUteis:0, qtdPessoas:4,
+      alvoAno:null, alvoMes:null, alvoLabel:''
+    };
+  }
+
+  const [yy, mm] = maxDate.split('-').map(Number);
+  const meses = [];
+
+  // Os 3 meses completos anteriores ao mês da última data carregada.
+  // Ex.: última data em agosto -> Maio, Junho e Julho.
+  const base = new Date(yy, mm - 1, 1);
+  for (let i=3; i>=1; i--){
+    const d = new Date(base.getFullYear(), base.getMonth() - i, 1);
+    meses.push(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`);
+  }
+
+  const totais = Object.fromEntries(meses.map(m => [m, 0]));
+  (FILTER_DATA.daily_filial || []).forEach(row => {
+    const mk = String(row[0] || '').slice(0,7);
+    if (Object.prototype.hasOwnProperty.call(totais, mk)){
+      totais[mk] += Number(row[2] || 0);
+    }
+  });
+
+  const itens = meses.map(m => ({mes:m, pedidos:totais[m] || 0}));
+  const comDados = itens.filter(x => x.pedidos > 0);
+  const media = comDados.length ? comDados.reduce((a,x)=>a+x.pedidos,0) / comDados.length : 0;
+  const sugestao = Math.round(media);
+
+  // A meta operacional é para o mês seguinte ao mês da última data carregada.
+  // Ex.: base atual em agosto -> planejamento de setembro.
+  const alvo = new Date(yy, mm, 1);
+  const alvoAno = alvo.getFullYear();
+  const alvoMes = alvo.getMonth() + 1;
+  const diasUteis = diasUteisDoMesMeta(alvoAno, alvoMes);
+  const qtdPessoas = FIXED_COLLABORATORS_CONFIG.length || 4;
+  const metaDiariaExata = (sugestao > 0 && diasUteis > 0 && qtdPessoas > 0)
+    ? sugestao / diasUteis / qtdPessoas
+    : 0;
+  const metaDiaria = metaDiariaExata > 0 ? Math.ceil(metaDiariaExata) : 0;
+
+  return {
+    meses:itens,
+    media,
+    sugestao,
+    metaDiaria,
+    metaDiariaExata,
+    diasUteis,
+    qtdPessoas,
+    alvoAno,
+    alvoMes,
+    alvoLabel:nomeMesAno(alvoAno, alvoMes)
+  };
+}
+
+function metaPedidosCard(realizado){
+  const goal = Number(GOALS.pedidos || 0);
+  const pct = goal > 0 ? (realizado/goal*100) : 0;
+  const st = statusFor(pct, false);
+  const barPct = Math.min(100, pct);
+  const barColor = st.cls === 'ok' ? 'var(--accent)' : (st.cls === 'warn' ? 'var(--medio)' : 'var(--grande)');
+  const h = sugestaoMetaPedidosUltimos3Meses();
+
+  const mesesHTML = h.meses.map(x => `
+    <div class="meta-suggestion-month">
+      <div class="m">${nomeMesCurto(x.mes)}</div>
+      <div class="q">${fmtInt(x.pedidos)}</div>
+    </div>`).join('');
+
+  return `
+    <div class="meta-card">
+      <h3>Meta de pedidos</h3>
+      <p class="meta-desc">A meta mensal sugerida é exatamente a média dos últimos 3 meses completos. Ela também é usada para calcular automaticamente a meta diária igual para todos.</p>
+
+      <div class="meta-suggestion">
+        <div class="meta-suggestion-title">Sugestão de meta — média dos últimos 3 meses completos</div>
+        <div class="meta-suggestion-months">${mesesHTML}</div>
+        <div class="meta-suggestion-bottom">
+          <div class="meta-suggestion-summary">
+            Média dos últimos 3 meses: <b>${fmtInt(h.media)} pedidos/mês</b><br>
+            Meta mensal sugerida: <b>${fmtInt(h.sugestao)} pedidos</b><br>
+            Meta diária para ${h.alvoLabel}: <b>${fmtInt(h.metaDiaria)} pedidos por pessoa/dia</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-inputrow">
+        <label>Meta</label>
+        <input type="number" data-goal="pedidos" value="${goal}" readonly disabled title="Meta calculada automaticamente pela média dos últimos 3 meses completos">
+        <span style="color:var(--text-muted);font-size:12px;">pedidos</span>
+      </div>
+      <div class="meta-compare">
+        <span class="real">${fmtInt(realizado)}</span>
+        <span class="goal">meta: ${fmtInt(goal)}</span>
+      </div>
+      <div class="meta-track"><div class="meta-fill" style="width:${barPct}%;background:${barColor}"></div></div>
+      <span class="meta-status ${st.cls}">${st.cls==='ok'?'✓':st.cls==='warn'?'●':'▼'} ${gapLabel(realizado, goal, false, v=>fmtInt(v))}</span>
+    </div>`;
+}
+
 function metaCard(id, title, desc, realizado, unidade, fmtFn, invert){
   const goal = GOALS[id];
   const pct = goal > 0 ? (realizado/goal*100) : 0;
@@ -2668,8 +2921,10 @@ function metaCard(id, title, desc, realizado, unidade, fmtFn, invert){
 }
 
 function renderMetas(c){
+  sincronizarMetasAutomaticas();
   const grid = document.getElementById('metasGrid');
   grid.innerHTML =
+    metaPedidosCard(c.totalPedidos || 0) +
     metaCard('tempo', 'Tempo médio de faturamento', 'Da coluna "Duração" — quanto menor, melhor', c.tempoMedioGeral, 'horas', v=>fmtDuracao(v), true) +
     metaCard('noprazo', '% no prazo', 'Percentual de pedidos faturados dentro do prazo', c.pctNoPrazo, '%', v=>fmt(v,1)+'%', false) +
     metaCard('mediaMensal', 'Média de pedidos por pessoa', 'Total de pedidos ÷ pessoas ativas ÷ meses do período', c.mediaMensalPessoa, 'por mês', v=>fmt(v), false);
@@ -2677,7 +2932,7 @@ function renderMetas(c){
   if (!goalsInit){
     goalsInit = true;
     grid.addEventListener('change', e => {
-      if (e.target.dataset.goal){
+      if (e.target.dataset.goal && e.target.dataset.goal !== 'pedidos'){
         const g = parseFloat(e.target.value);
         if (!isNaN(g) && g > 0) { GOALS[e.target.dataset.goal] = g; saveSharedValue('goals', e.target.dataset.goal, g, 'painel_goals_v1', GOALS); renderMetas(cached); }
       }
@@ -2690,7 +2945,94 @@ function renderMetas(c){
 // ---------- Metas por pessoa (pedidos/dia) — mesmos colaboradores fixos do Desempenho Diário ----------
 let personGoalsInit = false;
 
-function personMetaCard(cb, pa, nMeses){
+function labelsMetasFixas(){
+  return FIXED_COLLABORATORS_CONFIG.map(x => x.label);
+}
+
+function planejamentoMetaAutomatico(){
+  const h = sugestaoMetaPedidosUltimos3Meses();
+  return {
+    mediaMensal3Meses: h.media,
+    metaMensalEquipe: h.sugestao,
+    diasUteis: h.diasUteis,
+    metaIgualSugerida: h.metaDiaria,
+    metaDiariaExata: h.metaDiariaExata,
+    qtdPessoas: h.qtdPessoas,
+    meses: h.meses.map(x => nomeMesCurto(x.mes)).join(' · '),
+    alvoLabel: h.alvoLabel,
+  };
+}
+
+function metaIgualAtual(){
+  const p = planejamentoMetaAutomatico();
+  return p.metaIgualSugerida || DEFAULT_DAILY_GOAL;
+}
+
+function aplicarMetaIgualParaTodos(valor, salvar=true){
+  const g = Number(valor);
+  if (!Number.isFinite(g) || g <= 0) return;
+  labelsMetasFixas().forEach(label => {
+    DAILY_GOALS_ALL[label] = g;
+    if (salvar) saveSharedValue('dailyGoals', label, g, 'painel_daily_goals_all_v1', DAILY_GOALS_ALL);
+  });
+  lsSet('painel_daily_goals_all_v1', DAILY_GOALS_ALL);
+}
+
+function sincronizarMetasAutomaticas(){
+  const p = planejamentoMetaAutomatico();
+  if (!p.metaMensalEquipe || !p.metaIgualSugerida) return;
+
+  // Meta mensal = média exata dos últimos 3 meses completos.
+  if (Number(GOALS.pedidos || 0) !== Number(p.metaMensalEquipe)){
+    GOALS.pedidos = p.metaMensalEquipe;
+    saveSharedValue('goals', 'pedidos', p.metaMensalEquipe, 'painel_goals_v1', GOALS);
+  }
+
+  // Meta diária = meta mensal ÷ dias úteis ÷ 4 pessoas, arredondada para cima.
+  // É sempre igual para todos.
+  const labels = labelsMetasFixas();
+  const precisaAtualizar = labels.some(label => Number(DAILY_GOALS_ALL[label] || 0) !== Number(p.metaIgualSugerida));
+  if (precisaAtualizar){
+    aplicarMetaIgualParaTodos(p.metaIgualSugerida, true);
+  }
+}
+
+function garantirMetasIguais(){
+  sincronizarMetasAutomaticas();
+}
+
+function renderSetembroMetaPlan(){
+  const el = document.getElementById('setembroMetaPlan');
+  if (!el) return;
+  const p = planejamentoMetaAutomatico();
+  const metaAtual = metaIgualAtual();
+  const conta = p.diasUteis && p.qtdPessoas
+    ? `${fmtInt(p.metaMensalEquipe)} ÷ ${fmtInt(p.diasUteis)} dias úteis ÷ ${fmtInt(p.qtdPessoas)} pessoas = ${fmt(p.metaDiariaExata,2)} → ${fmtInt(p.metaIgualSugerida)}/dia`
+    : 'Aguardando dados suficientes para calcular a meta.';
+
+  el.innerHTML = `
+    <div class="setembro-plan">
+      <div class="setembro-plan-head">
+        <div>
+          <div class="setembro-plan-title">Planejamento automático — ${p.alvoLabel || 'próximo mês'}</div>
+          <div class="setembro-plan-sub">Base: média dos últimos 3 meses completos (${p.meses || '—'}). A meta diária é distribuída igualmente entre Amanda, Jorge, Pietro e Tamires.</div>
+        </div>
+      </div>
+      <div class="setembro-plan-grid">
+        <div class="setembro-plan-kpi"><div class="l">Média mensal — 3 meses</div><div class="v">${fmtInt(p.mediaMensal3Meses)}</div><div class="s">pedidos/mês</div></div>
+        <div class="setembro-plan-kpi"><div class="l">Meta mensal da equipe</div><div class="v">${fmtInt(p.metaMensalEquipe)}</div><div class="s">igual à média, sem acréscimo</div></div>
+        <div class="setembro-plan-kpi"><div class="l">Dias úteis — ${p.alvoLabel || 'mês'}</div><div class="v">${fmtInt(p.diasUteis)}</div><div class="s">seg–sex, descontando feriados nacionais fixos</div></div>
+        <div class="setembro-plan-kpi"><div class="l">Pessoas na divisão</div><div class="v">${fmtInt(p.qtdPessoas)}</div><div class="s">meta igual para todos</div></div>
+      </div>
+      <div class="setembro-equal-box">
+        <label>Meta automática igual para todos</label>
+        <input type="number" id="metaIgualTodosInput" min="1" step="1" value="${fmt(metaAtual,0)}" readonly disabled>
+        <span class="setembro-equal-note">pedidos/dia por pessoa · <b>${conta}</b></span>
+      </div>
+    </div>`;
+}
+
+function personMetaCard(cb, pa, nMeses, c){
   const diasAtivos = pa ? pa.dias.size : 0;
   const realizadoDia = (pa && diasAtivos > 0) ? pa.qtd / diasAtivos : 0;
   const goal = cb.goal;
@@ -2701,13 +3043,28 @@ function personMetaCard(cb, pa, nMeses){
   const catBreak = ORDEM.map((cat,i) => ({
     cat, total: pa ? pa.cats[i].qtd : 0,
   }));
+
+  // Observações pertencem à aba Metas de Faturamento.
+  // Inclui dias úteis zerados para permitir justificar atestado, folga, apoio em outra área etc.
+  const aggObs = diarioAggForPerson(cb.id, c.start, c.end);
+  const diasUteisPeriodo = diasUteisEntre(c.start, c.end);
+  const pendentes = cb.found
+    ? diasUteisPeriodo.filter(d => (aggObs.byDate[d] || 0) < goal && !OBSERVACOES[obsKey(cb.label, d)]).length
+    : 0;
+  const isOpen = metasObsOpenFor === cb.label;
+
   return `
     <div class="meta-card">
-      <h3><span class="swatch-dot" style="background:${cb.color}"></span>${cb.label}${cb.found?'':' (sem dados)'}</h3>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px;">
+        <h3 style="margin:0;"><span class="swatch-dot" style="background:${cb.color}"></span>${cb.label}${cb.found?'':' (sem dados)'}</h3>
+        <button type="button" class="obs-btn ${isOpen?'open':''} ${pendentes>0?'has-pending':''}" data-obs-toggle="${cb.label}" ${cb.found?'':'disabled'}>
+          📝 Obs${pendentes>0?` <span class="obs-badge">${pendentes}</span>`:''}
+        </button>
+      </div>
       <p class="meta-desc">Média de pedidos por dia trabalhado no período (${diasAtivos} dia${diasAtivos===1?'':'s'} com registro)</p>
       <div class="meta-inputrow">
         <label>Meta/dia</label>
-        <input type="number" data-pgoal="${cb.label}" value="${goal}" ${cb.found?'':'disabled'}>
+        <input type="number" value="${goal}" readonly disabled title="A meta é igual para todos e deve ser alterada no campo acima">
         <span style="color:var(--text-muted);font-size:12px;">pedidos</span>
       </div>
       <div class="meta-compare">
@@ -2731,21 +3088,79 @@ function personMetaCard(cb, pa, nMeses){
     </div>`;
 }
 
+function renderMetasObsPanel(c, collabs){
+  const obsPanel = document.getElementById('metasObsPanel');
+  if (!obsPanel) return;
+
+  if (metasObsOpenFor && collabs.some(cb => cb.label === metasObsOpenFor)){
+    const cb = collabs.find(cb => cb.label === metasObsOpenFor);
+    const agg = diarioAggForPerson(cb.id, c.start, c.end);
+    const diasRuins = diasUteisEntre(c.start, c.end)
+      .filter(d => (agg.byDate[d] || 0) < cb.goal)
+      .sort((a,b)=>b.localeCompare(a));
+
+    const rowsHTML = diasRuins.length ? diasRuins.map(date => {
+      const qtd = agg.byDate[date] || 0;
+      const pct = cb.goal > 0 ? qtd/cb.goal*100 : 0;
+      const key = obsKey(cb.label, date);
+      const obsVal = OBSERVACOES[key] || '';
+      return `
+        <div class="op-row">
+          <span class="op-date">${fmtDateBR(date)}</span>
+          <span class="op-qtd">${fmtInt(qtd)}/${fmtInt(cb.goal)}</span>
+          <span class="op-pct">${fmt(pctCap(pct),0)}%</span>
+          <input type="text" class="obs-input ${obsVal?'':'needs-obs'}" data-obs-label="${cb.label}" data-obs-date="${date}" value="${obsVal.replace(/"/g,'&quot;')}" placeholder="Ex.: atestado, folga, ajudando na BB, ausência...">
+        </div>`;
+    }).join('') : `<div class="op-desc" style="margin-top:8px;">Nenhum dia abaixo da meta no período selecionado para ${cb.label} 🎉</div>`;
+
+    obsPanel.innerHTML = `
+      <div class="obs-panel">
+        <div class="op-title"><span class="swatch-dot" style="background:${cb.color}"></span>Observações — ${cb.label}</div>
+        <p class="op-desc">Justificativas dos dias em que ${cb.label} não bateu a meta. Dias úteis com 0 pedidos também aparecem para justificativa.</p>
+        ${rowsHTML}
+      </div>`;
+  } else {
+    obsPanel.innerHTML = '';
+  }
+}
+
 function renderMetasPessoas(c){
   const grid = document.getElementById('metasPessoasGrid');
   if (!grid) return;
+  garantirMetasIguais();
+  renderSetembroMetaPlan();
   const collabs = resolveFixedCollaborators();
-  grid.innerHTML = collabs.map(cb => personMetaCard(cb, c.personAgg[cb.id], c.nMeses)).join('');
+  grid.innerHTML = collabs.map(cb => personMetaCard(cb, c.personAgg[cb.id], c.nMeses, c)).join('');
+  renderMetasObsPanel(c, collabs);
 
   if (!personGoalsInit){
     personGoalsInit = true;
-    grid.addEventListener('change', e => {
-      if (e.target.dataset.pgoal !== undefined){
-        const g = parseFloat(e.target.value);
-        const label = e.target.dataset.pgoal;
-        if (!isNaN(g) && g > 0) { DAILY_GOALS_ALL[label] = g; saveSharedValue('dailyGoals', label, g, 'painel_daily_goals_all_v1', DAILY_GOALS_ALL); renderMetasPessoas(cached); if (document.getElementById('diarioSummaryRow')) renderDiario(cached); }
-      }
+
+    grid.addEventListener('click', e => {
+      const btn = e.target.closest('.obs-btn');
+      if (!btn || btn.disabled) return;
+      const label = btn.dataset.obsToggle;
+      metasObsOpenFor = (metasObsOpenFor === label) ? null : label;
+      renderMetasPessoas(cached);
     });
+
+    const obsPanel = document.getElementById('metasObsPanel');
+    if (obsPanel){
+      obsPanel.addEventListener('input', e => {
+        if (e.target.dataset.obsDate === undefined) return;
+        const key = obsKey(e.target.dataset.obsLabel, e.target.dataset.obsDate);
+        OBSERVACOES[key] = e.target.value;
+        saveSharedValue('observations', key, e.target.value, 'painel_observacoes_v1', OBSERVACOES, 700);
+        e.target.classList.toggle('needs-obs', e.target.value.trim()==='');
+      });
+
+      obsPanel.addEventListener('change', e => {
+        if (e.target.dataset.obsDate === undefined) return;
+        const key = obsKey(e.target.dataset.obsLabel, e.target.dataset.obsDate);
+        OBSERVACOES[key] = e.target.value;
+        saveSharedValue('observations', key, e.target.value, 'painel_observacoes_v1', OBSERVACOES, 0);
+      });
+    }
   }
 }
 
@@ -2761,8 +3176,9 @@ const FIXED_COLLABORATORS_CONFIG = [
 const DEFAULT_DAILY_GOAL = 20;
 const DAILY_GOALS_ALL = lsGet('painel_daily_goals_all_v1', {});
 const OBSERVACOES = lsGet('painel_observacoes_v1', {}); // chave: "id|YYYY-MM-DD"
+const OBSERVACOES_PENDENTES = lsGet('painel_observacoes_pendentes_v1', {}); // justificativas aguardando confirmação online
 let diarioInit = false;
-let diarioObsOpenFor = null;
+let metasObsOpenFor = null;
 let diarioExtrasOpenDate = null;
 let diarioDisplayMode = lsGet('painel_diario_mode_v1', 'both'); // 'both' | 'num' | 'pct'
 
@@ -2797,6 +3213,21 @@ function diarioAggForPerson(id, start, end){
 }
 
 function obsKey(label, date){ return `${label}|${date}`; }
+
+// Lista todos os dias úteis (segunda a sexta) do período selecionado.
+// Assim, mesmo que a pessoa tenha 0 pedidos no dia, o dia aparece para justificativa.
+function diasUteisEntre(start, end){
+  const dias = [];
+  if (!start || !end || start > end) return dias;
+  const d = new Date(start + 'T00:00:00');
+  const fim = new Date(end + 'T00:00:00');
+  while (d <= fim){
+    const dow = d.getDay(); // 0=domingo, 6=sábado
+    if (dow >= 1 && dow <= 5) dias.push(d.toISOString().slice(0,10));
+    d.setDate(d.getDate()+1);
+  }
+  return dias;
+}
 
 function diarioExtrasByDate(collabs, start, end){
   const fixedIds = new Set(collabs.filter(cb => cb.found).map(cb => cb.id));
@@ -2847,13 +3278,8 @@ function renderDiario(c){
     const tempoMedio = total > 0 ? somaTotal/total : null;
     const diasBateu = dates.filter(d => cb.byDate[d] >= cb.goal).length;
     const pctOk = dates.length ? diasBateu/dates.length*100 : 0;
-    const pendentes = dates.filter(d => cb.byDate[d] < cb.goal && !OBSERVACOES[obsKey(cb.label, d)]).length;
-    const isOpen = diarioObsOpenFor === cb.label;
     return `
       <div class="kpi" style="--kpi-accent:${cb.color};">
-        <button type="button" class="obs-btn ${isOpen?'open':''} ${pendentes>0?'has-pending':''}" data-obs-toggle="${cb.label}">
-          📝 Obs${pendentes>0?` <span class="obs-badge">${pendentes}</span>`:''}
-        </button>
         <div class="label">${cb.label}</div>
         <div class="value" style="color:${cb.color}">${cb.found ? fmtInt(total) : '—'}</div>
         <div class="sub">${cb.found ? `pedidos em ${dates.length} dia${dates.length===1?'':'s'}` : 'não encontrado na planilha atual'}</div>
@@ -2861,34 +3287,6 @@ function renderDiario(c){
         ${cb.found && dates.length ? `<div class="trend ${pctOk>=70?'good':'bad'}">${diasBateu}/${dates.length} dias na meta (${fmt(pctOk,0)}%)</div>` : ''}
       </div>`;
   }).join('');
-
-  // ---- Painel expansível de observação (aberto pelo botão "Obs" do card) ----
-  const obsPanel = document.getElementById('diarioObsPanel');
-  if (diarioObsOpenFor && collabs.some(cb => cb.label === diarioObsOpenFor)){
-    const cb = collabs.find(cb => cb.label === diarioObsOpenFor);
-    const diasRuins = Object.keys(cb.byDate).filter(d => cb.byDate[d] < cb.goal).sort((a,b)=>b.localeCompare(a));
-    const rowsHTML = diasRuins.length ? diasRuins.map(date => {
-      const qtd = cb.byDate[date];
-      const pct = cb.goal > 0 ? qtd/cb.goal*100 : 0;
-      const key = obsKey(cb.label, date);
-      const obsVal = OBSERVACOES[key] || '';
-      return `
-        <div class="op-row">
-          <span class="op-date">${fmtDateBR(date)}</span>
-          <span class="op-qtd">${fmtInt(qtd)}/${fmtInt(cb.goal)}</span>
-          <span class="op-pct">${fmt(pctCap(pct),0)}%</span>
-          <input type="text" class="obs-input ${obsVal?'':'needs-obs'}" data-obs-label="${cb.label}" data-obs-date="${date}" value="${obsVal.replace(/"/g,'&quot;')}" placeholder="Por que não bateu a meta nesse dia?">
-        </div>`;
-    }).join('') : `<div class="op-desc" style="margin-top:8px;">Nenhum dia abaixo da meta no período selecionado para ${cb.label} 🎉</div>`;
-    obsPanel.innerHTML = `
-      <div class="obs-panel">
-        <div class="op-title"><span class="swatch-dot" style="background:${cb.color}"></span>Observações — ${cb.label}</div>
-        <p class="op-desc">Justificativa dos dias em que ${cb.label} não bateu a meta, dentro do período selecionado.</p>
-        ${rowsHTML}
-      </div>`;
-  } else {
-    obsPanel.innerHTML = '';
-  }
 
   // ---- Tabela comparativa dia a dia ----
   // Os quatro colaboradores continuam como principais.
@@ -2963,20 +3361,6 @@ function renderDiario(c){
 
   if (!diarioInit){
     diarioInit = true;
-    document.getElementById('diarioSummaryRow').addEventListener('click', e => {
-      const btn = e.target.closest('.obs-btn');
-      if (!btn) return;
-      const label = btn.dataset.obsToggle;
-      diarioObsOpenFor = (diarioObsOpenFor === label) ? null : label;
-      renderDiario(cached);
-    });
-    document.getElementById('diarioObsPanel').addEventListener('input', e => {
-      if (e.target.dataset.obsDate === undefined) return;
-      const key = obsKey(e.target.dataset.obsLabel, e.target.dataset.obsDate);
-      OBSERVACOES[key] = e.target.value;
-      saveSharedValue('observations', key, e.target.value, 'painel_observacoes_v1', OBSERVACOES, 700);
-      e.target.classList.toggle('needs-obs', e.target.value.trim()==='');
-    });
     document.getElementById('diarioModeSeg').addEventListener('click', e => {
       const btn = e.target.closest('button[data-mode]');
       if (!btn) return;
